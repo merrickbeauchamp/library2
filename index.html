@@ -1,0 +1,68 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ID Scan: Student</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  </head>
+
+  <body>
+    <main>
+      <div style="position: fixed; 
+  top: 50%;
+  left: 50%;
+  
+  transform: translate(-50%, -50%);">
+        <h1 style="font-size: 70px; margin-bottom: 0px">Scan ID Card Please</h1><br>
+        <h2 id="text" style="margin: auto; text-align: center; font-size: 50px"></h2>
+      </div>
+
+      <input style="height:0px;width:0px" id="textbox" type="text" autofocus="autofocus" />
+      <h2 id="count">
+        Students: Loading...
+      </h2>
+    </main>
+    <script>
+      const text = document.getElementById("text")
+      textbox.addEventListener('input', async () => {
+        const ding = new Audio("./ding.mp3")
+        const beep = new Audio("./beep.mp3")
+        if (textbox.value.length == 7) {
+          text.innerHTML = "Loading..."
+          let data = localStorage.getItem("students")
+          if (!data) {
+            localStorage.setItem("students", JSON.stringify([]))
+            data = []
+          } else {
+data = JSON.parse(data)
+}
+          if (data?.length > 70) {
+            text.innerHTML = "Library full!"
+            return beep.play()
+          }
+          if (data.includes(textbox.value)) {
+            let index = data.indexOf(textbox.value);
+            if (index > -1) {
+              data.splice(index, 1)
+            }
+            localStorage.setItem("students", JSON.stringify(data))
+            text.innerHTML = "Goodbye"
+            ding.play()
+          } else {
+            data.push(textbox.value)
+            localStorage.setItem("students", JSON.stringify(data))
+            text.innerHTML = "Welcome"
+            ding.play()
+          }
+          count.innerHTML = "Students:" + data.length
+          textbox.value = ""
+        }
+      })
+
+    </script>
+  </body>
+
+</html>
