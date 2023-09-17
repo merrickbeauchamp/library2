@@ -19,47 +19,65 @@
         <h1 style="font-size: 70px; margin-bottom: 0px">Scan ID Card Please</h1><br>
         <h2 id="text" style="margin: auto; text-align: center; font-size: 50px"></h2>
       </div>
-
-      <input style="height:0px;width:0px" id="textbox" type="text" autofocus="autofocus" />
       <h2 id="count">
         Students: Loading...
       </h2>
     </main>
     <script>
-      const text = document.getElementById("text")
-      textbox.addEventListener('input', async () => {
-        const ding = new Audio("./ding.mp3")
-        const beep = new Audio("./beep.mp3")
-        if (textbox.value.length == 7) {
-          text.innerHTML = "Loading..."
-          let data = localStorage.getItem("students")
-          if (!data) {
-            localStorage.setItem("students", JSON.stringify([]))
-            data = []
-          } else {
-data = JSON.parse(data)
-}
-          if (data?.length > 70) {
-            text.innerHTML = "Library full!"
-            return beep.play()
-          }
-          if (data.includes(textbox.value)) {
-            let index = data.indexOf(textbox.value);
-            if (index > -1) {
-              data.splice(index, 1)
-            }
-            localStorage.setItem("students", JSON.stringify(data))
-            text.innerHTML = "Goodbye"
-            ding.play()
-          } else {
-            data.push(textbox.value)
-            localStorage.setItem("students", JSON.stringify(data))
-            text.innerHTML = "Welcome"
-            ding.play()
-          }
-          count.innerHTML = "Students:" + data.length
-          textbox.value = ""
+      let studentCount = localStorage.getItem("students")
+      studentCount = studentCount ? JSON.parse(studentCount).length : 0
+      count.innerHTML = "Students: " + studentCount
+
+      function scan(id) {
+        let data = localStorage.getItem("students")
+        if (!data) {
+          localStorage.setItem("students", JSON.stringify([]))
+          data = []
+        } else {
+          data = JSON.parse(data)
         }
+        if (data?.length > 70) {
+          return text.innerHTML = "Library full!"
+          return beep.play()
+        }
+        if (data.includes(id)) {
+          let index = data.indexOf(id);
+          if (index > -1) {
+            data.splice(index, 1)
+          }
+          localStorage.setItem("students", JSON.stringify(data))
+          text.innerHTML = "Goodbye"
+          ding.play()
+        } else {
+          data.push(id)
+          localStorage.setItem("students", JSON.stringify(data))
+          text.innerHTML = "Welcome"
+          ding.play()
+        }
+        count.innerHTML = "Students: " + data.length
+      }
+
+      let id = "";
+      let reading = false;
+
+      document.addEventListener('keypress', e => {
+        if (e.keyCode === 13) {
+          if (id.length > 6) {
+            if (id == "1750038") {
+              localStorage.setItem("students", JSON.stringify([]))
+              count.innerHTML = "Students: 0"
+text.innerHTML = "Students cleared."
+ding.play()
+            } else {
+              scan(id)
+              id = "";
+            }
+
+          }
+        } else {
+          id += e.key;
+        }
+
       })
 
     </script>
