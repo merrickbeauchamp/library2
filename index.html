@@ -28,6 +28,9 @@
       studentCount = studentCount ? JSON.parse(studentCount).length : 0
       count.innerHTML = "Students: " + studentCount
 
+const ding = new Audio("./ding.mp3")
+        const beep = new Audio("./beep.mp3")
+      
       function scan(id) {
         let data = localStorage.getItem("students")
         if (!data) {
