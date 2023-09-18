@@ -40,7 +40,7 @@ const ding = new Audio("./ding.mp3")
           data = JSON.parse(data)
         }
         if (data?.length > 70) {
-          return text.innerHTML = "Library full!"
+          text.innerHTML = "Library full!"
           return beep.play()
         }
         if (data.includes(id)) {
