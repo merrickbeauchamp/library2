@@ -65,8 +65,7 @@ const ding = new Audio("./ding.mp3")
 
       document.addEventListener('keypress', e => {
         if (e.keyCode === 13) {
-          if (id.length > 6) {
-            if (id == "1750038") {
+            if (id == "82352") {
               localStorage.setItem("students", JSON.stringify([]))
               count.innerHTML = "Students: 0"
 text.innerHTML = "Students cleared."
@@ -75,8 +74,6 @@ ding.play()
               scan(id)
               id = "";
             }
-
-          }
         } else {
           id += e.key;
         }
