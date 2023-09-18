@@ -50,14 +50,13 @@ const ding = new Audio("./ding.mp3")
           }
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Goodbye"
-          ding.play()
         } else {
           data.push(id)
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Welcome"
-          ding.play()
         }
         count.innerHTML = "Students: " + data.length
+    ding.play()
       }
 
       let id = "";
