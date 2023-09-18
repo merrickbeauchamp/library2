@@ -39,10 +39,7 @@ const ding = new Audio("./ding.mp3")
         } else {
           data = JSON.parse(data)
         }
-        if (data?.length > 70) {
-          text.innerHTML = "Library full!"
-          return beep.play()
-        }
+        
         if (data.includes(id)) {
           let index = data.indexOf(id);
           if (index > -1) {
@@ -51,6 +48,10 @@ const ding = new Audio("./ding.mp3")
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Goodbye"
         } else {
+          if (data?.length > 70) {
+          text.innerHTML = "Library full!"
+          return beep.play()
+        }
           data.push(id)
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Welcome"
