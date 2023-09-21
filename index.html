@@ -7,6 +7,7 @@
     <title>ID Scan: Student</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js"></script>
   </head>
 
   <body>
@@ -74,6 +75,11 @@ ding.play()
             } else {
               scan(id)
               id = "";
+              confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 },
+});
             }
         } else {
           id += e.key;
