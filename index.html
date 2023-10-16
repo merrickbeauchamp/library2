@@ -27,7 +27,8 @@
     <script>
       let studentCount = localStorage.getItem("students")
       studentCount = studentCount ? JSON.parse(studentCount).length : 0
-      count.innerHTML = "Students: " + studentCount
+      let constant = localStorage.getItem("constant") || 0
+      count.innerHTML = "Students: " + (Number(studentCount) + Number(constant))
 
 
         const beep = new Audio("./beep.mp3")
@@ -57,7 +58,8 @@
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Welcome"
         }
-        count.innerHTML = "Students: " + data.length
+        let constant2 = localStorage.getItem("constant") || 0
+        count.innerHTML = "Students: " + (Number(data.length) + Number(constant2 ))
         let ding = new Audio("./ding.mp3")
     ding.play()
       }
@@ -86,6 +88,30 @@ ding.play()
         }
 
       })
+
+document.onkeydown = function (e) {
+    e = e || window.event;
+    let constant = localStorage.getItem("constant") || 0
+    if(e.keyCode == 38) {
+    constant++
+    text.innerHTML = "Student added."
+    }
+    if(e.keyCode == 40) {
+    constant--
+    text.innerHTML = "Student removed."
+    }
+    localStorage.setItem("constant", constant)
+    let data = localStorage.getItem("students")
+    data = data ? JSON.parse(data).length : 0 
+    count.innerHTML = "Students: " + (constant + data)
+    let ding = new Audio("./ding.mp3")
+    ding.play()
+    confetti({
+  particleCount: 100,
+  spread: 70,
+  origin: { y: 0.6 },
+});
+};
 
     </script>
   </body>
