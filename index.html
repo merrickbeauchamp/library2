@@ -95,14 +95,12 @@ document.onkeydown = function (e) {
     if(e.keyCode == 38) {
     constant++
     text.innerHTML = "Student added."
-    } else {
+    } 
       if(e.keyCode == 40) {
     constant--
     text.innerHTML = "Student removed."
     }
-    } else {
-      return
-    }
+    
     
     localStorage.setItem("constant", constant)
     let data = localStorage.getItem("students")
