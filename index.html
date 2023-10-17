@@ -92,6 +92,7 @@ ding.play()
 document.onkeydown = function (e) {
     e = e || window.event;
     let constant = localStorage.getItem("constant") || 0
+  if(e.keyCode == 38 || e.keyCode == 40) {
     if(e.keyCode == 38) {
     constant++
     text.innerHTML = "Student added."
@@ -113,6 +114,8 @@ document.onkeydown = function (e) {
   spread: 70,
   origin: { y: 0.6 },
 });
+  }
+    
 };
 
     </script>
