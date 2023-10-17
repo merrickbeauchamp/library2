@@ -92,15 +92,18 @@ ding.play()
 document.onkeydown = function (e) {
     e = e || window.event;
     let constant = localStorage.getItem("constant") || 0
-  if(e.keyCode !== 38 || e.keyCode !== 40) return; 
     if(e.keyCode == 38) {
     constant++
     text.innerHTML = "Student added."
-    }
-    if(e.keyCode == 40) {
+    } else {
+      if(e.keyCode == 40) {
     constant--
     text.innerHTML = "Student removed."
     }
+    } else {
+      return
+    }
+    
     localStorage.setItem("constant", constant)
     let data = localStorage.getItem("students")
     data = data ? JSON.parse(data).length : 0 
