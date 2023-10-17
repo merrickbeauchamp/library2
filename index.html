@@ -71,6 +71,7 @@
         if (e.keyCode === 13) {
             if (id == "82352") {
               localStorage.setItem("students", JSON.stringify([]))
+              localStorage.setItem("constant", 0)
               count.innerHTML = "Students: 0"
 text.innerHTML = "Students cleared."
 ding.play()
