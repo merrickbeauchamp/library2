@@ -25,6 +25,14 @@
       </h2>
     </main>
     <script>
+
+let students = {}
+      async function getStudents() {
+        const res = await fetch("./students.json")
+        students = await res.json()
+      }
+      getStudents()
+      console.log(students)
       let studentCount = localStorage.getItem("students")
       studentCount = studentCount ? JSON.parse(studentCount).length : 0
       let constant = localStorage.getItem("constant") || 0
