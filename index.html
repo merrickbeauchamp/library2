@@ -32,7 +32,7 @@ let students = {}
         students = await res.json()
       }
       getStudents()
-      console.log(students)
+      console.log(students["1750038"])
       let studentCount = localStorage.getItem("students")
       studentCount = studentCount ? JSON.parse(studentCount).length : 0
       let constant = localStorage.getItem("constant") || 0
