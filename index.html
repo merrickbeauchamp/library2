@@ -64,7 +64,7 @@ let students = {}
         }
           data.push(id)
           localStorage.setItem("students", JSON.stringify(data))
-          text.innerHTML = "Welcome"
+          text.innerHTML = "Welcome " + students[id]
         }
         let constant2 = localStorage.getItem("constant") || 0
         count.innerHTML = "Students: " + (Number(data.length) + Number(constant2 ))
