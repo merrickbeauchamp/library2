@@ -30,9 +30,9 @@ let students = {}
       async function getStudents() {
         const res = await fetch("./students.json")
         students = await res.json()
+        console.log(students)
       }
       getStudents()
-      console.log(students["1750038"])
       let studentCount = localStorage.getItem("students")
       studentCount = studentCount ? JSON.parse(studentCount).length : 0
       let constant = localStorage.getItem("constant") || 0
