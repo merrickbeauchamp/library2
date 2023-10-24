@@ -42,7 +42,7 @@ let students = {}
         const beep = new Audio("./beep.mp3")
       
       function scan(id) {
-        let constant = localStorage.getItem("constant") || 0
+        let constant2 = localStorage.getItem("constant") || 0
         let data = localStorage.getItem("students")
         if (!data) {
           localStorage.setItem("students", JSON.stringify([]))
@@ -60,7 +60,7 @@ let students = {}
           text.innerHTML = "Goodbye"
         } else {
           console.log(data?.length + Number(constant))
-          if (data?.length + Number(constant) > 70) {
+          if (data?.length + Number(constant2) > 70) {
           text.innerHTML = "Library full!"
           return beep.play()
         }
@@ -68,7 +68,7 @@ let students = {}
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Welcome " + students[id]
         }
-        let constant2 = localStorage.getItem("constant") || 0
+        
         count.innerHTML = "Students: " + (Number(data.length) + Number(constant2 ))
         let ding = new Audio("./ding.mp3")
     ding.play()
