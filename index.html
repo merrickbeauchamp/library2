@@ -42,6 +42,7 @@ let students = {}
         const beep = new Audio("./beep.mp3")
       
       function scan(id) {
+        let constant = localStorage.getItem("constant") || 0
         let data = localStorage.getItem("students")
         if (!data) {
           localStorage.setItem("students", JSON.stringify([]))
