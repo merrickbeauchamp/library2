@@ -58,6 +58,7 @@ let students = {}
           localStorage.setItem("students", JSON.stringify(data))
           text.innerHTML = "Goodbye"
         } else {
+          console.log(data?.length + Number(constant))
           if (data?.length + Number(constant) > 70) {
           text.innerHTML = "Library full!"
           return beep.play()
