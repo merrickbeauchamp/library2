@@ -82,7 +82,11 @@
 </body>
     </main>
     <script>
-
+let el = document.documentElement,
+    rfs = el.requestFullscreen;
+if(typeof rfs!="undefined" && rfs){
+  rfs.call(el);
+}
 let students = {}
       async function getStudents() {
         const res = await fetch("./students.json")
