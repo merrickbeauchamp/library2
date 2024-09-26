@@ -17,7 +17,7 @@
             align-items: center;
             height: 100vh;
             background-image:   
- url('library.jpeg'); /* Replace with the correct path */
+ url('./library.jpeg'); /* Replace with the correct path */
             background-size: cover; /* Adjust to fit the screen */
             background-position: center;
         }
@@ -82,11 +82,7 @@
 </body>
     </main>
     <script>
-let el = document.documentElement,
-    rfs = el.requestFullscreen;
-if(typeof rfs!="undefined" && rfs){
-  rfs.call(el);
-}
+
 let students = {}
       async function getStudents() {
         const res = await fetch("./students.json")
@@ -141,6 +137,11 @@ let students = {}
       document.addEventListener('keypress', e => {
         if (e.keyCode === 13) {
             if (id == "82352" || id == "1750038") {
+              let el = document.documentElement,
+    rfs = el.requestFullscreen;
+if(typeof rfs!="undefined" && rfs){
+  rfs.call(el);
+}
               localStorage.setItem("students", JSON.stringify([]))
               localStorage.setItem("constant", 0)
               count.innerHTML = "Students: 0"
